@@ -7,25 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header-overlay"></div>
-
     <header id="main-header">
         <nav>
             <ul>
                 <li><a href="#" class="nav-logo" data-key="nav-logo">幻櫻いろは</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-key="nav-social">Social Media</a>
-                    <div class="mega-menu">
-                        <div class="mega-menu-content">
-                            <ul class="mega-menu-links">
-                                <li><a href="https://www.instagram.com/aruiroha0718" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                                <li><a href="https://x.com/aruiroha0718" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
-                                <li><a href="https://www.youtube.com/@aruiroha0718" target="_blank" rel="noopener noreferrer">YouTube</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                </ul>
         </nav>
     </header>
 
@@ -34,30 +20,10 @@
             <h1 data-key="hero-title">新しい交流を。</h1>
             <h2 data-key="hero-subtitle">Aiming to bring joy to the world.</h2>
             <div class="cta-links">
-                <a href="#social-section" class="button" data-key="hero-button">Learn More</a>
+                <a href="#" id="open-social-modal" class="button" data-key="hero-button">Learn More</a>
             </div>
         </section>
 
-        <section id="social-section" class="social-links-section fade-in-target">
-            <h2 class="section-title" data-key="social-title">Social Media</h2>
-            <div class="social-links-container">
-                <div class="social-card">
-                    <h3>X (Twitter)</h3>
-                    <p>@macaronwinter_</p>
-                    <a href="https://x.com/macaronwinter_" target="_blank" rel="noopener noreferrer" class="social-link-button" data-key="social-visit">Visit</a>
-                </div>
-                <div class="social-card">
-                    <h3>Instagram</h3>
-                    <p>@aruiroha0718</p>
-                    <a href="https://www.instagram.com/aruiroha0718" target="_blank" rel="noopener noreferrer" class="social-link-button" data-key="social-visit">Visit</a>
-                </div>
-                <div class="social-card">
-                    <h3>YouTube</h3>
-                    <p data-key="social-youtube-id">幻櫻いろは</p>
-                    <a href="https://www.youtube.com/@aruiroha0718" target="_blank" rel="noopener noreferrer" class="social-link-button" data-key="social-visit">Visit</a>
-                </div>
-            </div>
-        </section>
         <section id="games-section" class="games-grid">
             <h2 class="section-title" data-key="games-title">Content title to be published</h2>
             <div class="grid-container">
@@ -71,13 +37,41 @@
                  <a href="#" target="_blank" rel="noopener noreferrer" class="game-card-link"><div class="game-card"><img src="image/yt_music_icon.png" alt="Music"><h3 data-key="music-card-title">Music</h3></div></a>
             </div>
         </section>
-
-        </main>
+        
+    </main>
 
     <footer>
         <p>&copy; 2025 MY Inc. All rights reserved.</p>
     </footer>
 
+    <div id="social-modal" class="modal-overlay">
+        <div class="modal-content"> <button id="close-social-modal" class="modal-close-button">&times;</button>
+            <h2 class="modal-title" data-key="modal-title">Social Media</h2>
+            <div class="modal-social-links">
+                <div class="modal-social-card">
+                    <div>
+                        <h3>X (Twitter)</h3>
+                        <p>@macaronwinter_</p>
+                    </div>
+                    <a href="https://x.com/macaronwinter_" target="_blank" rel="noopener noreferrer" class="apple-button" data-key="modal-visit">Visit</a>
+                </div>
+                <div class="modal-social-card">
+                    <div>
+                        <h3>Instagram</h3>
+                        <p>@aruiroha0718</p>
+                    </div>
+                    <a href="https://www.instagram.com/aruiroha0718" target="_blank" rel="noopener noreferrer" class="apple-button" data-key="modal-visit">Visit</a>
+                </div>
+                <div class="modal-social-card">
+                    <div>
+                        <h3>YouTube</h3>
+                        <p data-key="modal-youtube-id">幻櫻いろは</p>
+                    </div>
+                    <a href="https://www.youtube.com/@aruiroha0718" target="_blank" rel="noopener noreferrer" class="apple-button" data-key="modal-visit">Visit</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
