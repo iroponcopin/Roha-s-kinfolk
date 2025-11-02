@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "hero-title": "New connections.", 
             "hero-subtitle": "Aiming to bring joy to the world.", 
             "hero-button": "Learn More", 
+            "social-title": "Social Media", // 追加
+            "social-youtube-id": "IROHA. Genou", // 追加 (ロゴの英語名に統一)
+            "social-visit": "Visit", // 追加
             "games-title": "Content title to be published", 
             "game1-title": "Genshin Impact", 
             "game2-title": "Honkai: Star Rail", 
@@ -16,9 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "game5-title": "Wuthering Waves", 
             "game6-title": "Neverness To Everness",
             "game7-title": "Honkai: Nexus Anima",
-            "music-card-title": "Music",
-            "profile-title": "All social IDs are @aruiroha0718.", 
-            "profile-desc": "My goal is to build global relationships..." 
+            "music-card-title": "Music"
+            // profile-title と profile-desc を削除
         },
         ja: { 
             "nav-logo": "幻櫻いろは", 
@@ -26,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "hero-title": "新しい交流を。", 
             "hero-subtitle": "世界中に喜びを届けることを目指して。", 
             "hero-button": "更に詳しく", 
+            "social-title": "ソーシャルメディア", // 追加
+            "social-youtube-id": "幻櫻いろは", // 追加
+            "social-visit": "見に行く", // 追加
             "games-title": "公開予定のコンテンツ", 
             "game1-title": "原神", 
             "game2-title": "崩壊：スターレイル", 
@@ -34,9 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "game5-title": "鳴潮 (Wuthering Waves)", 
             "game6-title": "ネヴァネス・トゥ・エヴァネス",
             "game7-title": "崩壊：ネクサスアニマ",
-            "music-card-title": "ミュージック",
-            "profile-title": "全てのSNS IDは @aruiroha0718 です。", 
-            "profile-desc": "様々なコンテンツを通じて..." 
+            "music-card-title": "ミュージック"
+            // profile-title と profile-desc を削除
         },
         ko: { 
             "nav-logo": "겐오 이로하", 
@@ -44,6 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "hero-title": "새로운 교류를.", 
             "hero-subtitle": "세상에 즐거움을 선사하는 것을 목표로.", 
             "hero-button": "더 알아보기", 
+            "social-title": "소셜 미디어", // 追加
+            "social-youtube-id": "겐오 이로하", // 追加
+            "social-visit": "방문하기", // 追加
             "games-title": "공개 예정 콘텐츠", 
             "game1-title": "원신", 
             "game2-title": "붕괴: 스타레일", 
@@ -52,9 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "game5-title": "명조: 워더링 웨이브", 
             "game6-title": "네버니스 투 에버니스",
             "game7-title": "붕괴: 넥서스 애니마",
-            "music-card-title": "음악",
-            "profile-title": "모든 소셜 ID는 @aruiroha0718 입니다.", 
-            "profile-desc": "다양한 콘텐츠를 통해..." 
+            "music-card-title": "음악"
+            // profile-title と profile-desc を削除
         }
     };
     
