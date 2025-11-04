@@ -1,307 +1,654 @@
-/* --- Apple Design System Variables --- */
-:root {
-    --apple-text-primary: #1d1d1f;
-    --apple-text-secondary: #6e6e73;
-    --apple-blue: #0071e3;
-    --apple-blue-hover: #0077ed;
-    --apple-bg-light: #fff;
-    --apple-bg-secondary: #f5f5f7;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY</title>
+    <meta name="color-scheme" content="light">
 
-    --apple-header-height: 44px;
-    --apple-radius-large: 18px;
-    --apple-radius-medium: 12px;
-}
+    <style>
+        /* --- Apple Design System Variables --- */
+        :root {
+            --apple-text-primary: #1d1d1f;
+            --apple-text-secondary: #6e6e73;
+            --apple-blue: #0071e3;
+            --apple-blue-hover: #0077ed;
+            --apple-bg-light: #fff;
+            --apple-bg-secondary: #f5f5f7;
+        
+            --apple-header-height: 44px;
+            --apple-radius-large: 18px;
+            --apple-radius-medium: 12px;
+        }
+        
+        /* --- Basic Styles --- */
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--apple-bg-light);
+            color: var(--apple-text-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body.modal-open {
+            overflow: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--apple-blue);
+            transition: filter 0.2s ease-out;
+        }
+        a:hover {
+            filter: brightness(1.1);
+        }
+        
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        /* --- Header --- */
+        #main-header {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        #main-header nav {
+            display: flex;
+            justify-content: center; /* [Change] Center items in nav */
+            align-items: center;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: var(--apple-header-height);
+            gap: 24px;
+        }
+        
+        .nav-logo {
+            color: var(--apple-text-primary);
+            font-weight: 600; /* [Change] Bold -> 600 */
+            font-size: 17px;
+        }
+        
+        /* --- Main Content & Hero --- */
+        main {
+            text-align: center;
+        }
+        
+        .hero {
+            padding: 80px 20px 60px;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 600;
+            margin: 0 0 10px;
+        }
+        
+        .hero h2 {
+            font-size: 26px;
+            font-weight: 400;
+            color: var(--apple-text-secondary);
+            margin: 0 0 30px;
+        }
+        
+        /* [Change] Renamed from .button to .cta-button */
+        .cta-button {
+            background-color: var(--apple-blue);
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 400;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: var(--apple-blue-hover);
+            color: #fff;
+            filter: none;
+        }
+        
+        /* --- Content Grid --- */
+        /* [Change] Renamed and refined */
+        .content-grid {
+            padding: 40px 20px 80px;
+            background-color: var(--apple-bg-secondary);
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+        
+        .grid-container {
+            display: grid;
+            /* [Change] Responsive grid layout */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .content-card {
+            background-color: var(--apple-bg-light);
+            border-radius: var(--apple-radius-large);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .content-card-link:hover .content-card {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+        
+        .content-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .content-card h3 {
+            font-size: 19px;
+            font-weight: 500;
+            padding: 16px 20px 20px;
+            margin: 0;
+            color: var(--apple-text-primary);
+        }
+        
+        
+        /* --- Fade-in Animation --- */
+        /* [Change] Refined animation curve */
+        .fade-in-target {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1), transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+        .fade-in-target.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- Modal Styles --- */
+        /* [Fix] Correctly defined .modal-overlay, was broken in original CSS */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 2000;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: rgba(245, 245, 247, 0.85); /* [Change] Apple light grey glass */
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: var(--apple-radius-large);
+            padding: 24px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            text-align: left;
+            
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .modal-content.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .modal-close-button {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.08);
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--apple-text-secondary);
+            cursor: pointer;
+            line-height: 28px;
+            text-align: center;
+            padding: 0;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .modal-close-button:hover {
+            background: rgba(0, 0, 0, 0.12);
+            color: var(--apple-text-primary);
+        }
+        
+        .modal-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .modal-social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .modal-social-card {
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: var(--apple-radius-medium);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .modal-social-card div {
+            margin-right: 10px;
+        }
+        .modal-social-card h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0 0 2px 0;
+        }
+        .modal-social-card p {
+            font-size: 14px;
+            color: var(--apple-text-secondary);
+            margin: 0;
+        }
+        
+        /* --- Apple Pill Button (Modal) --- */
+        .apple-button {
+            background-color: var(--apple-blue);
+            color: #fff;
+            padding: 7px 18px;
+            border-radius: 980px;
+            font-size: 14px;
+            font-weight: 400;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .apple-button:hover {
+            background-color: var(--apple-blue-hover);
+            color: #fff;
+            filter: none;
+        }
+        
+        /* --- Footer --- */
+        footer {
+            background-color: var(--apple-bg-secondary);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--apple-text-secondary);
+        }
+    </style>
+    </head>
+<body>
+    <header id="main-header">
+        <nav>
+            <a href="#" class="nav-logo" data-key="nav-logo">幻櫻いろは</a>
+        </nav>
+    </header>
 
-/* --- Basic Styles --- */
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--apple-bg-light);
-    color: var(--apple-text-primary);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+    <main id="main-content">
+        <section class="hero fade-in-target">
+            <h1 data-key="hero-title">新しい交流を。</h1>
+            <h2 data-key="hero-subtitle">Aiming to bring joy to the world.</h2>
+            <div class="cta-links">
+                <a href="#" id="open-social-modal" class="cta-button" data-key="hero-button">Learn More</a>
+            </div>
+        </section>
 
-body.modal-open {
-    overflow: hidden;
-}
+        <section id="content-section" class="content-grid">
+            <h2 class="section-title" data-key="content-title">Content title to be published</h2>
+            <div class="grid-container">
+                 <a href="https://genshin.hoyoverse.com/" target="_blank" rel="noopener noreferrer" class="content-card-link">
+                     <div class="content-card">
+                         <img src="image/genshin_image.jpg" alt="Genshin Impact">
+                         <h3 data-key="game1-title">Genshin Impact</h3>
+                     </div>
+                 </a>
+                 <a href="https://hsr.hoyoverse.com/" target="_blank" rel="noopener noreferrer" class="content-card-link">
+                     <div class="content-card">
+                         <img src="image/starrail_image.jpg" alt="Honkai: Star Rail">
+                         <h3 data-key="game2-title">Honkai: Star Rail</h3>
+                     </div>
+                 </a>
+                 <a href="https://zenless.hoyoverse.com/" target="_blank" rel="noopener noreferrer" class="content-card-link">
+                     <div class="content-card">
+                         <img src="image/zzz_image.jpg" alt="Zenless Zone Zero">
+                         <h3 data-key="game3-title">Zenless Zone Zero</h3>
+                     </div>
+                 </a>
+                 <a href="#" target="_blank" rel="noopener noreferrer" class="content-card-link">
+                     <div class="content-card">
+                         <img src="image/honkai_nexus_anima_icon.jpg" alt="Honkai: Nexus Anima">
+                         <h3 data-key="game7-title">Honkai: Nexus Anima</h3>
+                     </div>
+                 </a>
+                 <a href="https://www.minecraft.net/" target="_blank" rel="noopener noreferrer" class="content-card-link">
+                     <div class="content-card">
+                         <img src="image/minecraft_image.jpg" alt="Minecraft">
+                         <h3 data-key="game4-title">Minecraft</h3>
+                     </div>
+                 </a>
+                 <a href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer" class="content-card-link">
+                     <div class="content-card">
+                         <img src="image/wuthering_waves_image.jpg" alt="Wuthering Waves">
+                         <h3 data-key="game5-title">Wuthering Waves</h3>
+                     </div>
+                 </a>
+                 <a href="#" target="_blank" rel="noopener noreferrer" class="content-card-link">
+                     <div class="content-card">
+                         <img src="image/nte_image.jpg" alt="Neverness To Everness">
+                         <h3 data-key="game6-title">Neverness To Everness</h3>
+                     </div>
+                 </a>
+                 <a href="#" target="_blank" rel="noopener noreferrer" class="content-card-link">
+                     <div class="content-card">
+                         <img src="image/yt_music_icon.png" alt="Music">
+                         <h3 data-key="music-card-title">Music</h3>
+                     </div>
+                 </a>
+            </div>
+        </section>
+        
+    </main>
 
-a {
-    text-decoration: none;
-    color: var(--apple-blue);
-    transition: filter 0.2s ease-out;
-}
-a:hover {
-    filter: brightness(1.1);
-}
+    <div id="social-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-id">
+        <div class="modal-content"> 
+            <button id="close-social-modal" class="modal-close-button" aria-label="Close">&times;</button>
+            <h2 id="modal-title-id" class="modal-title" data-key="modal-title">Social Media</h2>
+            <div class="modal-social-links">
+                <div class="modal-social-card">
+                    <div>
+                        <h3>X (Twitter)</h3>
+                        <p>@macaronwinter_</p>
+                    </div>
+                    <a href="https://x.com/macaronwinter_" target="_blank" rel="noopener noreferrer" class="apple-button" data-key="modal-visit">Visit</a>
+                </div>
+                <div class="modal-social-card">
+                    <div>
+                        <h3>Instagram</h3>
+                        <p>@aruiroha0718</p>
+                    </div>
+                    <a href="https://www.instagram.com/aruiroha0718" target="_blank" rel="noopener noreferrer" class="apple-button" data-key="modal-visit">Visit</a>
+                </div>
+                <div class="modal-social-card">
+                    <div>
+                        <h3>YouTube</h3>
+                        <p data-key="modal-youtube-id">幻櫻いろは</p>
+                    </div>
+                    <a href="https://www.youtube.com/@aruiroha0718" target="_blank" rel="noopener noreferrer" class="apple-button" data-key="modal-visit">Visit</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-img {
-    max-width: 100%;
-    display: block;
-}
+    <footer role="contentinfo">
+        <p>&copy; 2025 MY Inc. All rights reserved.</p>
+    </footer>
 
-/* --- Header --- */
-#main-header {
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-#main-header nav {
-    display: flex;
-    justify-content: center; /* [Change] Center items in nav */
-    align-items: center;
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 0 20px;
-    height: var(--apple-header-height);
-    gap: 24px;
-}
-
-.nav-logo {
-    color: var(--apple-text-primary);
-    font-weight: 600; /* [Change] Bold -> 600 */
-    font-size: 17px;
-}
-
-/* --- Main Content & Hero --- */
-main {
-    text-align: center;
-}
-
-.hero {
-    padding: 80px 20px 60px;
-}
-
-.hero h1 {
-    font-size: 56px;
-    font-weight: 600;
-    margin: 0 0 10px;
-}
-
-.hero h2 {
-    font-size: 26px;
-    font-weight: 400;
-    color: var(--apple-text-secondary);
-    margin: 0 0 30px;
-}
-
-/* [Change] Renamed from .button to .cta-button */
-.cta-button {
-    background-color: var(--apple-blue);
-    color: #fff;
-    padding: 12px 22px;
-    border-radius: 980px;
-    font-size: 17px;
-    font-weight: 400;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-.cta-button:hover {
-    background-color: var(--apple-blue-hover);
-    color: #fff;
-    filter: none;
-}
-
-/* --- Content Grid --- */
-/* [Change] Renamed and refined */
-.content-grid {
-    padding: 40px 20px 80px;
-    background-color: var(--apple-bg-secondary);
-}
-
-.section-title {
-    font-size: 32px;
-    font-weight: 600;
-    margin-bottom: 40px;
-}
-
-.grid-container {
-    display: grid;
-    /* [Change] Responsive grid layout */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: left;
-}
-
-.content-card {
-    background-color: var(--apple-bg-light);
-    border-radius: var(--apple-radius-large);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.content-card-link:hover .content-card {
-    transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.content-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.content-card h3 {
-    font-size: 19px;
-    font-weight: 500;
-    padding: 16px 20px 20px;
-    margin: 0;
-    color: var(--apple-text-primary);
-}
-
-
-/* --- Fade-in Animation --- */
-/* [Change] Refined animation curve */
-.fade-in-target {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1), transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-}
-.fade-in-target.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* --- Modal Styles --- */
-/* [Fix] Correctly defined .modal-overlay, was broken in original CSS */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 2000;
-}
-.modal-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-    background-color: rgba(245, 245, 247, 0.85); /* [Change] Apple light grey glass */
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border-radius: var(--apple-radius-large);
-    padding: 24px;
-    max-width: 450px;
-    width: 100%;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    position: relative;
-    text-align: left;
-    
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.modal-content.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.modal-close-button {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(0, 0, 0, 0.08);
-    border: none;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--apple-text-secondary);
-    cursor: pointer;
-    line-height: 28px;
-    text-align: center;
-    padding: 0;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-.modal-close-button:hover {
-    background: rgba(0, 0, 0, 0.12);
-    color: var(--apple-text-primary);
-}
-
-.modal-title {
-    font-size: 22px;
-    font-weight: 600;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.modal-social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.modal-social-card {
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: var(--apple-radius-medium);
-    padding: 12px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-.modal-social-card div {
-    margin-right: 10px;
-}
-.modal-social-card h3 {
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0 0 2px 0;
-}
-.modal-social-card p {
-    font-size: 14px;
-    color: var(--apple-text-secondary);
-    margin: 0;
-}
-
-/* --- Apple Pill Button (Modal) --- */
-.apple-button {
-    background-color: var(--apple-blue);
-    color: #fff;
-    padding: 7px 18px;
-    border-radius: 980px;
-    font-size: 14px;
-    font-weight: 400;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-    border: none;
-    cursor: pointer;
-    white-space: nowrap;
-}
-.apple-button:hover {
-    background-color: var(--apple-blue-hover);
-    color: #fff;
-    filter: none;
-}
-
-/* --- Footer --- */
-footer {
-    background-color: var(--apple-bg-secondary);
-    padding: 40px 20px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--apple-text-secondary);
-}
+    <script>
+        /**
+         * Main application script.
+         * Note: This is JavaScript, not Java.
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+        
+            /**
+             * Configuration for localization.
+             * [New] Add new language codes here (e.g., 'fr', 'de-DE') to scale.
+             */
+            const config = {
+                defaultLocale: 'en-GB',
+                supportedLocales: ['en-GB', 'en-US', 'ja', 'ko'],
+                translations: {
+                    // [Change] British English
+                    'en-GB': { 
+                        "nav-logo": "IROHA. Genou", 
+                        "hero-title": "New connections.", 
+                        "hero-subtitle": "Aiming to bring joy to the world.", 
+                        "hero-button": "Find out more", // [Change]
+                        "modal-title": "Social Media", 
+                        "modal-youtube-id": "IROHA. Genou", 
+                        "modal-visit": "Visit", 
+                        "content-title": "Upcoming Content", // [Change]
+                        "game1-title": "Genshin Impact", 
+                        "game2-title": "Honkai: Star Rail", 
+                        "game3-title": "Zenless Zone Zero", 
+                        "game4-title": "Minecraft", 
+                        "game5-title": "Wuthering Waves", 
+                        "game6-title": "Neverness To Everness",
+                        "game7-title": "Honkai: Nexus Anima",
+                        "music-card-title": "Music"
+                    },
+                    // [New] Example: US English (fallback)
+                    'en-US': {
+                        "nav-logo": "IROHA. Genou", 
+                        "hero-title": "New connections.", 
+                        "hero-subtitle": "Aiming to bring joy to the world.", 
+                        "hero-button": "Learn More",
+                        "modal-title": "Social Media", 
+                        "modal-youtube-id": "IROHA. Genou", 
+                        "modal-visit": "Visit", 
+                        "content-title": "Content to be published",
+                        "game1-title": "Genshin Impact", 
+                        "game2-title": "Honkai: Star Rail", 
+                        "game3-title": "Zenless Zone Zero", 
+                        "game4-title": "Minecraft", 
+                        "game5-title": "Wuthering Waves", 
+                        "game6-title": "Neverness To Everness",
+                        "game7-title": "Honkai: Nexus Anima",
+                        "music-card-title": "Music"
+                    },
+                    'ja': { 
+                        "nav-logo": "幻櫻いろは", 
+                        "hero-title": "新しい交流を。", 
+                        "hero-subtitle": "世界中に喜びを届けることを目指して。", 
+                        "hero-button": "更に詳しく", 
+                        "modal-title": "ソーシャルメディア", 
+                        "modal-youtube-id": "幻櫻いろは", 
+                        "modal-visit": "見に行く", 
+                        "content-title": "公開予定のコンテンツ", // [Change] Key rename
+                        "game1-title": "原神", 
+                        "game2-title": "崩壊：スターレイル", 
+                        "game3-title": "ゼンレスゾーンゼロ", 
+                        "game4-title": "マインクラフト", 
+                        "game5-title": "鳴潮 (Wuthering Waves)", 
+                        "game6-title": "ネヴァネス・トゥ・エヴァネス",
+                        "game7-title": "崩壊：ネクサスアニマ",
+                        "music-card-title": "ミュージック"
+                    },
+                    'ko': { 
+                        "nav-logo": "겐오 이로하", 
+                        "hero-title": "새로운 교류를.", 
+                        "hero-subtitle": "세상에 즐거움을 선사하는 것을 목표로.", 
+                        "hero-button": "더 알아보기", 
+                        "modal-title": "소셜 미디어", 
+                        "modal-youtube-id": "겐오 이로하", 
+                        "modal-visit": "방문하기", 
+                        "content-title": "공개 예정 콘텐츠", // [Change] Key rename
+                        "game1-title": "원신", 
+                        "game2-title": "붕괴: 스타레일", 
+                        "game3-title": "젠레스 존 제로", 
+                        "game4-title": "마인크래프트", 
+                        "game5-title": "명조: 워더링 웨이브", 
+                        "game6-title": "네버니스 투 에버니스",
+                        "game7-title": "붕괴: 넥서스 애니마",
+                        "music-card-title": "음악"
+                    }
+                }
+            };
+        
+            /**
+             * [New] Finds the best matching supported locale from browser languages.
+             * @returns {string} The best matching locale code.
+             */
+            function getBestLocale() {
+                const supported = new Set(config.supportedLocales);
+                
+                for (const lang of navigator.languages) {
+                    // 1. Try exact match (e.g., 'en-GB')
+                    if (supported.has(lang)) {
+                        return lang;
+                    }
+                    // 2. Try partial match (e.g., 'en' from 'en-US')
+                    const langBase = lang.split('-')[0];
+                    if (supported.has(langBase)) {
+                        return langBase;
+                    }
+                }
+                // Fallback to default
+                return config.defaultLocale;
+            }
+        
+            /**
+             * Applies translations to the page.
+             */
+            function initLocalization() {
+                const locale = getBestLocale();
+                const langData = config.translations[locale] || config.translations[config.defaultLocale];
+                
+                // Set document language
+                document.documentElement.lang = locale.split('-')[0];
+        
+                // Translate elements
+                document.querySelectorAll('[data-key]').forEach(element => {
+                    const key = element.getAttribute('data-key');
+                    if (langData[key]) { 
+                        element.textContent = langData[key]; 
+                    }
+                });
+            }
+        
+            /**
+             * Sets up intersection observer for fade-in animations.
+             */
+            function initScrollAnimations() {
+                const targets = document.querySelectorAll('.fade-in-target');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1 // Trigger when 10% is visible
+                });
+                targets.forEach(target => { observer.observe(target); });
+            }
+        
+            /**
+             * Sets up smooth scrolling for anchor links.
+             */
+            function initSmoothScroll() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    // Exclude modal buttons
+                    if (anchor.id.includes('modal')) return; 
+        
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(this.getAttribute('href'));
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                });
+            }
+        
+            /**
+             * Initializes the social media modal.
+             */
+            function initModal() {
+                const modal = document.getElementById('social-modal');
+                const modalContent = modal ? modal.querySelector('.modal-content') : null;
+                const openModalButton = document.getElementById('open-social-modal');
+                const closeModalButton = document.getElementById('close-social-modal');
+        
+                if (!modal || !modalContent || !openModalButton || !closeModalButton) {
+                    console.warn('Modal elements not found.');
+                    return;
+                }
+        
+                const openModal = () => {
+                    modal.classList.add('visible');
+                    document.body.classList.add('modal-open');
+                    setTimeout(() => {
+                        modalContent.classList.add('visible');
+                    }, 10); // Delay for transition
+                };
+        
+                const closeModal = () => {
+                    modalContent.classList.remove('visible');
+                    setTimeout(() => {
+                        modal.classList.remove('visible');
+                        document.body.classList.remove('modal-open');
+                    }, 300); // Must match CSS transition duration
+                };
+        
+                openModalButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal();
+                });
+        
+                closeModalButton.addEventListener('click', closeModal);
+        
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+                
+                // Close modal with Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === "Escape" && modal.classList.contains('visible')) {
+                        closeModal();
+                    }
+                });
+            }
+        
+            // --- Run all initializers ---
+            initLocalization();
+            initScrollAnimations();
+            initSmoothScroll();
+            initModal();
+        
+        });
+    </script>
+    </body>
+</html>
