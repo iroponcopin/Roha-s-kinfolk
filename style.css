@@ -1,158 +1,176 @@
-/* 基本的なスタイルリセットとフォント設定 */
-body {
-    margin: 0;
-    /* この指定によりAppleデバイスではSan Franciscoフォントが適用されます */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #fff;
-    color: #1d1d1f;
-    -webkit-font-smoothing: antialiased;
-}
-/* [変更] body.menu-open -> body.modal-open */
-body.modal-open {
-    overflow: hidden; /* モーダル表示時に背景をスクロールさせない */
-}
-a {
-    text-decoration: none;
-    color: #06c;
+/* --- Apple Design System Variables --- */
+:root {
+    --apple-text-primary: #1d1d1f;
+    --apple-text-secondary: #6e6e73;
+    --apple-blue: #0071e3;
+    --apple-blue-hover: #0077ed;
+    --apple-bg-light: #fff;
+    --apple-bg-secondary: #f5f5f7;
+
+    --apple-header-height: 44px;
+    --apple-radius-large: 18px;
+    --apple-radius-medium: 12px;
 }
 
-/* ヘッダー */
-header {
+/* --- Basic Styles --- */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--apple-bg-light);
+    color: var(--apple-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: var(--apple-blue);
+    transition: filter 0.2s ease-out;
+}
+a:hover {
+    filter: brightness(1.1);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* --- Header --- */
+#main-header {
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(20px);
-    padding: 0 20px;
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
-header nav ul {
-    list-style: none;
+
+#main-header nav {
     display: flex;
-    justify-content: center; /* ロゴが中央に来る */
+    justify-content: center; /* [Change] Center items in nav */
     align-items: center;
-    margin: 0;
-    padding: 0;
-    height: 48px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: var(--apple-header-height);
     gap: 24px;
 }
-header nav ul li a {
-    color: #1d1d1f;
-    font-size: 14px;
-}
+
 .nav-logo {
-    font-weight: bold;
-    font-size: 18px;
+    color: var(--apple-text-primary);
+    font-weight: 600; /* [Change] Bold -> 600 */
+    font-size: 17px;
 }
 
-/* [削除] --- Mega Menu Styles --- */
-/* .dropdown から .header-overlay.visible までのスタイルをすべて削除 */
-
-
-/* メインコンテンツ */
+/* --- Main Content & Hero --- */
 main {
     text-align: center;
 }
+
 .hero {
-    padding: 100px 20px;
+    padding: 80px 20px 60px;
 }
+
 .hero h1 {
     font-size: 56px;
-    margin-bottom: 10px;
+    font-weight: 600;
+    margin: 0 0 10px;
 }
+
 .hero h2 {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 400;
-    margin-bottom: 30px;
+    color: var(--apple-text-secondary);
+    margin: 0 0 30px;
 }
-/* .button は .apple-button とは別（ヒーローセクション用）として残します */
-.button {
-    background-color: #0071e3;
+
+/* [Change] Renamed from .button to .cta-button */
+.cta-button {
+    background-color: var(--apple-blue);
     color: #fff;
     padding: 12px 22px;
     border-radius: 980px;
     font-size: 17px;
+    font-weight: 400;
     display: inline-block;
-    transition: filter 0.3s ease;
+    transition: background-color 0.3s ease;
 }
-.button:hover {
-    filter: brightness(1.15);
+.cta-button:hover {
+    background-color: var(--apple-blue-hover);
+    color: #fff;
+    filter: none;
 }
 
-/* [削除] ソーシャルリンク セクション */
-/* .social-links-section 関連のスタイルをすべて削除 */
-
-
-/* ゲームグリッドセクション */
-.games-grid {
-    padding: 60px 0;
-    background-color: #f5f5f7;
+/* --- Content Grid --- */
+/* [Change] Renamed and refined */
+.content-grid {
+    padding: 40px 20px 80px;
+    background-color: var(--apple-bg-secondary);
 }
-.games-grid.hidden {
-    display: none;
-}
-.games-grid .section-title {
-    font-size: 40px;
+
+.section-title {
+    font-size: 32px;
+    font-weight: 600;
     margin-bottom: 40px;
-    padding: 0 20px;
 }
+
 .grid-container {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
+    display: grid;
+    /* [Change] Responsive grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px 20px 20px;
-    -webkit-overflow-scrolling: touch;
-}
-.grid-container::-webkit-scrollbar {
-    height: 8px;
-}
-.game-card-link {
-    display: block;
-    min-width: 280px;
-}
-.game-card {
-    background: #fff;
-    border-radius: 18px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-.game-card img {
-    max-width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-.game-card h3 {
-    font-size: 16px;
-    margin: 0;
     text-align: left;
 }
 
-/* アニメーション (モーダルでも使用) */
+.content-card {
+    background-color: var(--apple-bg-light);
+    border-radius: var(--apple-radius-large);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.content-card-link:hover .content-card {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.content-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.content-card h3 {
+    font-size: 19px;
+    font-weight: 500;
+    padding: 16px 20px 20px;
+    margin: 0;
+    color: var(--apple-text-primary);
+}
+
+
+/* --- Fade-in Animation --- */
+/* [Change] Refined animation curve */
 .fade-in-target {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition: opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1), transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
 }
 .fade-in-target.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* スマホ表示の調整 */
-@media (max-width: 768px) {
-    /* [削除] .social-links-section 関連の指定を削除 */
-    .games-grid .section-title {
-        font-size: 32px;
-    }
-}
-
-/* ▼▼▼ [追加] モーダルスタイル ▼▼▼ */
+/* --- Modal Styles --- */
+/* [Fix] Correctly defined .modal-overlay, was broken in original CSS */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -160,13 +178,13 @@ main {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-    /* Apple風のすりガラス効果 */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
     
     opacity: 0;
     visibility: hidden;
@@ -179,18 +197,17 @@ main {
 }
 
 .modal-content {
-    background-color: rgba(255, 255, 255, 0.85); /* 半透明の白 */
-    backdrop-filter: blur(30px); /* コンテンツ自体にもブラーをかける */
+    background-color: rgba(245, 245, 247, 0.85); /* [Change] Apple light grey glass */
+    backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    border-radius: 14px;
+    border-radius: var(--apple-radius-large);
     padding: 24px;
     max-width: 450px;
-    width: 90%;
+    width: 100%;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     position: relative;
     text-align: left;
     
-    /* アニメーション（JSで .visible をトグル） */
     opacity: 0;
     transform: scale(0.95);
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -202,24 +219,25 @@ main {
 
 .modal-close-button {
     position: absolute;
-    top: 8px;
+    top: 12px;
     right: 12px;
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.08);
     border: none;
     border-radius: 50%;
     width: 28px;
     height: 28px;
     font-size: 18px;
     font-weight: 400;
-    color: #555;
+    color: var(--apple-text-secondary);
     cursor: pointer;
     line-height: 28px;
     text-align: center;
     padding: 0;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 .modal-close-button:hover {
-    background: rgba(0, 0, 0, 0.1);
-    color: #000;
+    background: rgba(0, 0, 0, 0.12);
+    color: var(--apple-text-primary);
 }
 
 .modal-title {
@@ -237,8 +255,8 @@ main {
 }
 
 .modal-social-card {
-    background-color: rgba(255, 255, 255, 0.6); /* カード背景 */
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: var(--apple-radius-medium);
     padding: 12px 16px;
     display: flex;
     justify-content: space-between;
@@ -246,7 +264,6 @@ main {
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
 .modal-social-card div {
-    /* テキスト（h3, p）をまとめるdiv */
     margin-right: 10px;
 }
 .modal-social-card h3 {
@@ -256,37 +273,35 @@ main {
 }
 .modal-social-card p {
     font-size: 14px;
-    color: #6e6e73;
+    color: var(--apple-text-secondary);
     margin: 0;
 }
 
-/* ▼▼▼ [追加] Apple風ボタン (モーダル内) ▼▼▼ */
+/* --- Apple Pill Button (Modal) --- */
 .apple-button {
-    background-color: #0071e3;
+    background-color: var(--apple-blue);
     color: #fff;
-    padding: 7px 18px; /* 少し小さめに調整 */
-    border-radius: 980px; /* 楕円形 */
+    padding: 7px 18px;
+    border-radius: 980px;
     font-size: 14px;
-    font-weight: 400; /* Appleは標準400 */
+    font-weight: 400;
     display: inline-block;
-    transition: filter 0.3s ease;
+    transition: background-color 0.3s ease;
     border: none;
     cursor: pointer;
-    white-space: nowrap; /* ボタンテキストが改行しないように */
+    white-space: nowrap;
 }
 .apple-button:hover {
-    filter: brightness(1.15);
+    background-color: var(--apple-blue-hover);
     color: #fff;
+    filter: none;
 }
-/* ▲▲▲ [追加] Apple風ボタン ▲▲▲ */
-/* ▲▲▲ [追加] モーダルスタイル ▲▲▲ */
 
-
-/* フッター */
+/* --- Footer --- */
 footer {
-    background-color: #f5f5f7;
+    background-color: var(--apple-bg-secondary);
     padding: 40px 20px;
     text-align: center;
     font-size: 12px;
-    color: #6e6e73;
+    color: var(--apple-text-secondary);
 }
