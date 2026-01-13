@@ -1,38 +1,72 @@
-/* --- Apple Design System Variables --- */
-:root {
-    --apple-text-primary: #1d1d1f;
-    --apple-text-secondary: #6e6e73;
-    --apple-blue: #0071e3;
-    --apple-blue-hover: #0077ed;
-    --apple-bg-light: #fff;
-    --apple-bg-secondary: #f5f5f7;
+/* --- Glimpse Design System: Liquid Glass iOS26 Beta1 --- */
 
-    --apple-header-height: 44px;
-    --apple-radius-large: 18px;
-    --apple-radius-medium: 12px;
+:root {
+    /* Colors */
+    --glimpse-text-primary: rgba(0, 0, 0, 0.88);
+    --glimpse-text-secondary: rgba(0, 0, 0, 0.56);
+    --glimpse-accent: #007aff;
+    --glimpse-accent-hover: #0062cc;
+    
+    /* Glass Variables */
+    --glass-bg-base: rgba(255, 255, 255, 0.25);
+    --glass-bg-hover: rgba(255, 255, 255, 0.45);
+    --glass-bg-modal: rgba(240, 240, 240, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-border-hover: rgba(255, 255, 255, 0.6);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    
+    /* Dimensions */
+    --header-height: 56px;
+    --radius-xl: 32px;
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    
+    /* Animation */
+    --anim-spring: cubic-bezier(0.19, 1, 0.22, 1); /* iOS Spring-like */
 }
 
-/* --- Basic Styles --- */
+/* --- Base & Reset --- */
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--apple-bg-light);
-    color: var(--apple-text-primary);
+    color: var(--glimpse-text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background-color: #f2f2f7; /* Fallback */
 }
 
-body.modal-open {
-    overflow: hidden;
+/* --- Dynamic Mesh Background --- */
+.background-mesh {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+    background: 
+        radial-gradient(circle at 15% 50%, rgba(255, 150, 150, 0.3), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(100, 200, 255, 0.3), transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(200, 100, 255, 0.2), transparent 40%),
+        linear-gradient(135deg, #e0eAFC 0%, #cfdef3 100%); /* Soft base */
+    filter: blur(60px);
+    animation: backgroundShift 20s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundShift {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
 }
 
 a {
     text-decoration: none;
-    color: var(--apple-blue);
-    transition: filter 0.2s ease-out;
-}
-a:hover {
-    filter: brightness(1.1);
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
 }
 
 img {
@@ -40,146 +74,171 @@ img {
     display: block;
 }
 
-/* --- Header --- */
-#main-header {
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+/* --- Glass Utilities --- */
+.glass-panel {
+    background: var(--glass-bg-base);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
 }
 
-#main-header nav {
-    display: flex;
-    justify-content: center; /* [Change] Center items in nav */
-    align-items: center;
-    max-width: 980px;
+.glass-panel-light {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-button {
+    background: var(--glimpse-accent);
+    color: white;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+    transition: transform 0.4s var(--anim-spring), box-shadow 0.4s var(--anim-spring), background 0.3s ease;
+}
+
+.glass-button:hover {
+    background: var(--glimpse-accent-hover);
+    transform: scale(1.04);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+}
+
+.glass-button:active {
+    transform: scale(0.96);
+}
+
+/* --- Header --- */
+#main-header {
+    position: sticky;
+    top: 20px;
     margin: 0 auto;
-    padding: 0 20px;
-    height: var(--apple-header-height);
-    gap: 24px;
+    width: 90%;
+    max-width: 980px;
+    height: var(--header-height);
+    border-radius: 999px; /* Pill shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: top 0.3s ease;
 }
 
 .nav-logo {
-    color: var(--apple-text-primary);
-    font-weight: 600; /* [Change] Bold -> 600 */
-    font-size: 17px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--glimpse-text-primary);
 }
 
-/* --- Main Content & Hero --- */
-main {
+/* --- Hero --- */
+.hero {
+    padding: 120px 20px 80px;
     text-align: center;
 }
 
-.hero {
-    padding: 80px 20px 60px;
-}
-
 .hero h1 {
-    font-size: 56px;
-    font-weight: 600;
-    margin: 0 0 10px;
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 16px;
+    background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero h2 {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 400;
-    color: var(--apple-text-secondary);
-    margin: 0 0 30px;
+    color: var(--glimpse-text-secondary);
+    margin: 0 0 40px;
 }
 
-/* [Change] Renamed from .button to .cta-button */
 .cta-button {
-    background-color: var(--apple-blue);
-    color: #fff;
-    padding: 12px 22px;
-    border-radius: 980px;
+    padding: 14px 32px;
+    border-radius: 999px;
     font-size: 17px;
-    font-weight: 400;
+    font-weight: 500;
     display: inline-block;
-    transition: background-color 0.3s ease;
-}
-.cta-button:hover {
-    background-color: var(--apple-blue-hover);
-    color: #fff;
-    filter: none;
 }
 
 /* --- Content Grid --- */
-/* [Change] Renamed and refined */
 .content-grid {
-    padding: 40px 20px 80px;
-    background-color: var(--apple-bg-secondary);
+    padding: 0 20px 100px;
 }
 
 .section-title {
+    text-align: center;
     font-size: 32px;
     font-weight: 600;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
+    color: var(--glimpse-text-primary);
 }
 
 .grid-container {
     display: grid;
-    /* [Change] Responsive grid layout */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    max-width: 1200px;
+    gap: 32px;
+    max-width: 1100px;
     margin: 0 auto;
-    text-align: left;
+}
+
+.content-card-link {
+    display: block;
 }
 
 .content-card {
-    background-color: var(--apple-bg-light);
-    border-radius: var(--apple-radius-large);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.5s var(--anim-spring), background-color 0.3s ease;
+    height: 100%;
 }
+
 .content-card-link:hover .content-card {
-    transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    background: var(--glass-bg-hover);
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--glass-border-hover);
+}
+
+.card-image-wrapper {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    background: rgba(255,255,255,0.5); /* Placeholder bg */
 }
 
 .content-card img {
     width: 100%;
-    height: 180px;
+    height: 100%;
     object-fit: cover;
+    transition: transform 0.6s var(--anim-spring);
+}
+
+.content-card-link:hover .content-card img {
+    transform: scale(1.08); /* Gentle zoom */
 }
 
 .content-card h3 {
-    font-size: 19px;
-    font-weight: 500;
-    padding: 16px 20px 20px;
+    padding: 24px;
     margin: 0;
-    color: var(--apple-text-primary);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--glimpse-text-primary);
 }
 
-
-/* --- Fade-in Animation --- */
-/* [Change] Refined animation curve */
-.fade-in-target {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1), transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-}
-.fade-in-target.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* --- Modal Styles --- */
-/* [Fix] Correctly defined .modal-overlay, was broken in original CSS */
+/* --- Modal --- */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 2000;
     
     display: flex;
     justify-content: center;
@@ -188,120 +247,120 @@ main {
     
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 2000;
+    transition: all 0.4s ease;
 }
+
 .modal-overlay.visible {
     opacity: 1;
     visibility: visible;
 }
 
 .modal-content {
-    background-color: rgba(245, 245, 247, 0.85); /* [Change] Apple light grey glass */
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border-radius: var(--apple-radius-large);
-    padding: 24px;
-    max-width: 450px;
+    background: var(--glass-bg-modal);
+    border-radius: var(--radius-xl);
+    padding: 32px;
     width: 100%;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-width: 440px;
     position: relative;
-    text-align: left;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
     
+    transform: scale(0.9) translateY(20px);
     opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: transform 0.5s var(--anim-spring), opacity 0.4s ease;
 }
+
 .modal-content.visible {
+    transform: scale(1) translateY(0);
     opacity: 1;
-    transform: scale(1);
 }
 
 .modal-close-button {
     position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(0, 0, 0, 0.08);
-    border: none;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--apple-text-secondary);
+    background: rgba(0,0,0,0.1);
+    color: var(--glimpse-text-secondary);
+    border: none;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    line-height: 28px;
-    text-align: center;
-    padding: 0;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: all 0.2s ease;
 }
+
 .modal-close-button:hover {
-    background: rgba(0, 0, 0, 0.12);
-    color: var(--apple-text-primary);
+    background: rgba(0,0,0,0.15);
+    color: var(--glimpse-text-primary);
 }
 
 .modal-title {
-    font-size: 22px;
-    font-weight: 600;
-    margin-top: 5px;
-    margin-bottom: 20px;
     text-align: center;
+    font-size: 24px;
+    margin: 0 0 24px;
 }
 
 .modal-social-links {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 .modal-social-card {
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: var(--apple-radius-medium);
-    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    padding: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-.modal-social-card div {
-    margin-right: 10px;
-}
-.modal-social-card h3 {
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0 0 2px 0;
-}
-.modal-social-card p {
-    font-size: 14px;
-    color: var(--apple-text-secondary);
-    margin: 0;
 }
 
-/* --- Apple Pill Button (Modal) --- */
-.apple-button {
-    background-color: var(--apple-blue);
-    color: #fff;
-    padding: 7px 18px;
-    border-radius: 980px;
-    font-size: 14px;
-    font-weight: 400;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-    border: none;
-    cursor: pointer;
-    white-space: nowrap;
+.modal-social-card h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    font-weight: 600;
 }
-.apple-button:hover {
-    background-color: var(--apple-blue-hover);
-    color: #fff;
-    filter: none;
+
+.modal-social-card p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--glimpse-text-secondary);
+}
+
+.visit-button {
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 /* --- Footer --- */
-footer {
-    background-color: var(--apple-bg-secondary);
-    padding: 40px 20px;
+.glass-panel-footer {
     text-align: center;
-    font-size: 12px;
-    color: var(--apple-text-secondary);
+    padding: 30px;
+    font-size: 13px;
+    color: var(--glimpse-text-secondary);
+    border-top: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+}
+
+/* --- Fade In Animation --- */
+.fade-in-target {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s var(--anim-spring);
+}
+
+.fade-in-target.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    .hero h1 { font-size: 42px; }
+    .hero h2 { font-size: 20px; }
+    #main-header { width: 95%; }
 }
