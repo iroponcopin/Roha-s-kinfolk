@@ -1,58 +1,38 @@
 <!DOCTYPE html>
-<html lang="en-GB" class="scroll-smooth">
+<html lang="en-GB">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IROHA — Official Homepage | YouTube Content & Updates</title>
-    <meta name="description" content="Official homepage of Iroha Mai. Discover latest YouTube videos, follow on X and Instagram, and contact via email.">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Iroha — Official Homepage">
-    <meta property="og:description" content="Gaming & Lifestyle from IROHA Watch latest videos and stay updated.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://iroha.com"> <!-- Placeholder URL -->
-    <meta property="og:image" content="https://placehold.co/1200x630/1a1a1a/ffffff?text=IROHA>
+    <title>IROHA | Honkai: Star Rail Highlights</title>
+    <meta name="description" content="Strategic Honkai: Star Rail gameplay, highlights, and build showcases by IROHA.">
 
-    <!-- Fonts -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            red: '#FF0000',
-                            dark: '#0f0f0f',
-                            gray: '#1E1E1E',
-                            surface: '#272727',
-                            text: '#F5F5F5',
-                            muted: '#A3A3A3'
-                        }
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-out',
-                        'slide-up': 'slideUp 0.8s ease-out',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        gray: {
+                            50: '#F9FAFB',
+                            100: '#F3F4F6',
+                            200: '#E5E7EB',
+                            300: '#D1D5DB',
+                            400: '#9CA3AF',
+                            500: '#6B7280',
+                            600: '#4B5563',
+                            700: '#374151',
+                            800: '#1F2937',
+                            900: '#111827',
                         }
                     }
                 }
@@ -60,276 +40,227 @@
         }
     </script>
 
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .btn-primary {
-                @apply bg-brand-red text-white px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg shadow-red-900/20 flex items-center justify-center gap-2;
+    <style>
+        /* Custom tweaks for browser-standard font rendering specifically for the "Apple" feel */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            .btn-secondary {
-                @apply border border-white/20 text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all hover:border-white/50 flex items-center justify-center gap-2;
-            }
-            .section-title {
-                @apply text-3xl md:text-5xl font-black mb-12 text-center tracking-tight;
-            }
-            .glass-card {
-                @apply bg-brand-gray/50 backdrop-blur-sm border border-white/5 rounded-2xl p-6 hover:border-white/10 transition-all;
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
-<body class="bg-brand-dark text-brand-text font-sans antialiased overflow-x-hidden">
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/5">
-        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="text-2xl font-black tracking-tighter hover:text-brand-red transition-colors">
-                IROHA<span class="text-brand-red">.</span>
+<body class="bg-white text-gray-900 font-sans selection:bg-gray-900 selection:text-white">
+
+    <!-- Header -->
+    <header
+        class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="text-xl font-bold tracking-tight text-gray-900 hover:opacity-80 transition-opacity">
+                IROHA
             </a>
-            
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide">
-                <a href="#about" class="hover:text-brand-red transition-colors">ABOUT</a>
-                <a href="#videos" class="hover:text-brand-red transition-colors">VIDEOS</a>
-                <a href="#social" class="hover:text-brand-red transition-colors">SOCIAL</a>
-                <a href="#contact" class="hover:text-brand-red transition-colors">CONTACT</a>
-                <a href="https://www.youtube.com/@irooo0975" target="_blank" class="bg-white text-brand-dark px-5 py-2 rounded-full hover:bg-brand-red hover:text-white transition-all">
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#about"
+                    class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">About</a>
+                <a href="#videos"
+                    class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Videos</a>
+                <a href="#contact"
+                    class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Contact</a>
+            </nav>
+
+            <!-- CTA -->
+            <div class="flex items-center gap-4">
+                <a href="https://www.youtube.com/@irooo0975?sub_confirmation=1" target="_blank"
+                    class="px-4 py-1.5 text-xs font-semibold bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors">
                     Subscribe
                 </a>
-            </div>
-
-            <!-- Mobile Toggle -->
-            <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none" aria-label="Toggle Menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-brand-surface border-b border-white/10 shadow-2xl">
-            <div class="flex flex-col p-6 gap-4 font-semibold text-center">
-                <a href="#about" class="py-3 hover:text-brand-red transition-colors mobile-link">About</a>
-                <a href="#videos" class="py-3 hover:text-brand-red transition-colors mobile-link">Videos</a>
-                <a href="#social" class="py-3 hover:text-brand-red transition-colors mobile-link">Social</a>
-                <a href="#contact" class="py-3 hover:text-brand-red transition-colors mobile-link">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <!-- Background decorative elements -->
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-red/10 rounded-full blur-[100px] pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
-
-        <div class="container mx-auto px-6 text-center z-10 animate-slide-up">
-            <div class="inline-block mb-4 px-4 py-1 rounded-full border border-white/10 bg-white/5 text-sm font-medium text-brand-muted">
-                Official Homepage
-            </div>
-            <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter leading-tight">
-                IROHA
-            </h1>
-            <p class="text-xl md:text-2xl text-brand-muted max-w-2xl mx-auto mb-10 font-light">
-                Gaming & Lifestyle content that brings joy to your screen.
-            </p>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-                <a href="https://youtube.com" target="_blank" class="btn-primary w-full md:w-auto">
-                    <i class="fab fa-youtube"></i> Watch on YouTube
-                </a>
-                <div class="flex gap-4 w-full md:w-auto">
-                    <a href="https://x.com" target="_blank" class="btn-secondary flex-1 md:flex-none justify-center">
-                        <i class="fab fa-x-twitter"></i> <span class="md:hidden">X</span>
-                    </a>
-                    <a href="https://instagram.com" target="_blank" class="btn-secondary flex-1 md:flex-none justify-center">
-                        <i class="fab fa-instagram"></i> <span class="md:hidden">IG</span>
-                    </a>
-                </div>
             </div>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-brand-dark relative">
-        <div class="container mx-auto px-6">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="section-title">About Me</h2>
-                <div class="prose prose-invert prose-lg mx-auto text-brand-muted leading-relaxed">
-                    <p class="mb-6">
-                        Hi, I’m IROHA — I create gaming and lifestyle videos that bring joy to your screen. Join me on my creative journey as we explore new worlds, try new things, and build an amazing community together.
-                    </p>
-                    <p>
-                        Whether I'm attempting a speed-run or sharing my daily life, my goal is always to put a smile on your face. Thanks for stopping by!
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- YouTube Section -->
-    <section id="videos" class="py-24 bg-brand-gray/30 border-y border-white/5">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title">Latest on YouTube</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Video Item 1 -->
-                <a href="https://youtu.be/slLQrdFYjb0?si=-NLYB2S4WTdozSaB" target="_blank" class="group block">
-                    <div class="relative overflow-hidden rounded-xl aspect-video mb-4 border border-white/10 group-hover:border-brand-red/50 transition-all">
-                        <img src="https://placehold.co/600x400/222/FFF?text=Video+Thumbnail" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                            <i class="fas fa-play-circle text-5xl text-red-600 drop-shadow-lg"></i>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-lg group-hover:text-brand-red transition-colors truncate">Saber E0S1 | 1 cycle [ Honkai : Star Rail ]</h3>
-                    <p class="text-sm text-brand-muted mt-1">5 months ago • 4.2K views</p>
-                </a>
-                
-                <!-- Video Item 2 -->
-                <a href="https://youtu.be/pbeRzWsSVyY?si=n1L8Ahd61HgpcmFX" target="_blank" class="group block">
-                    <div class="relative overflow-hidden rounded-xl aspect-video mb-4 border border-white/10 group-hover:border-brand-red/50 transition-all">
-                        <img src="https://placehold.co/600x400/222/FFF?text=Vlog+Setup" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                            <i class="fas fa-play-circle text-5xl text-red-600 drop-shadow-lg"></i>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-lg group-hover:text-brand-red transition-colors truncate">Hysilens x Kafka E0S0 Version 3.5 | 3cycle [ Honkai : Star Rail ]</h3>
-                    <p class="text-sm text-brand-muted mt-1">4 months ago • 7K views</p>
-                </a>
-
-                <!-- Video Item 3 -->
-                <a href="https://youtube.com" target="_blank" class="group block">
-                    <div class="relative overflow-hidden rounded-xl aspect-video mb-4 border border-white/10 group-hover:border-brand-red/50 transition-all">
-                        <img src="https://placehold.co/600x400/222/FFF?text=Live+Stream" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                            <i class="fas fa-play-circle text-5xl text-red-600 drop-shadow-lg"></i>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-lg group-hover:text-brand-red transition-colors truncate">No Video</h3>
-                    <p class="text-sm text-brand-muted mt-1">0 weeks ago • 0K views</p>
-                </a>
-            </div>
-            <div class="text-center mt-12">
-                <a href="https://www.youtube.com/@irooo0975" target="_blank" class="inline-flex items-center gap-2 text-brand-muted hover:text-white transition-colors border-b border-transparent hover:border-white pb-0.5">
-                    View Channel <i class="fas fa-arrow-right text-xs"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Section -->
-    <section id="social" class="py-24 bg-brand-dark">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title">Social Updates</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                
-                <!-- X Card -->
-                <div class="glass-card flex flex-col items-start bg-gradient-to-br from-[#1E1E1E] to-[#121212]">
-                    <div class="flex items-center gap-3 mb-6 w-full border-b border-white/5 pb-4">
-                        <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
-                            <i class="fab fa-x-twitter text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold">Twitter / X</h3>
-                            <p class="text-xs text-brand-muted">@irohamai__ru</p>
-                        </div>
-                    </div>
-                    <p class="text-brand-muted mb-8 italic flex-grow">"Just finished editing the new video! It's going to be a fun one. Stay tuned for the premiere tomorrow at 6PM! 🎮✨"</p>
-                    <a href="https://x.com/irohamai__ru" target="_blank" class="w-full btn-secondary py-2 text-sm">
-                        Follow on X
-                    </a>
-                </div>
-
-                <!-- Instagram Card -->
-                <div class="glass-card flex flex-col items-start bg-gradient-to-br from-[#1E1E1E] to-[#121212]">
-                    <div class="flex items-center gap-3 mb-6 w-full border-b border-white/5 pb-4">
-                        <div class="w-10 h-10 bg-gradient-to-tr from-yellow-500 via-red-500 to-purple-600 rounded-full flex items-center justify-center">
-                            <i class="fab fa-instagram text-xl text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold">Instagram</h3>
-                            <p class="text-xs text-brand-muted">@genouiroha
-                            
-                            </p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2 w-full mb-8">
-                        <div class="aspect-square bg-white/5 rounded-md overflow-hidden"><img src="https://placehold.co/150" alt="Insta" class="w-full h-full object-cover"></div>
-                        <div class="aspect-square bg-white/5 rounded-md overflow-hidden"><img src="https://placehold.co/150" alt="Insta" class="w-full h-full object-cover"></div>
-                        <div class="aspect-square bg-white/5 rounded-md overflow-hidden"><img src="https://placehold.co/150" alt="Insta" class="w-full h-full object-cover"></div>
-                    </div>
-                    <a href="https://instagram.com/genouiroha" target="_blank" class="w-full btn-secondary py-2 text-sm">
-                        Follow on Instagram
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-brand-surface relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="text-brand-muted max-w-xl mx-auto mb-10">
-                For business enquiries, collaborations, or just to say hello.
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="about"
+            class="pt-40 pb-24 md:pt-48 md:pb-32 px-6 flex flex-col items-center text-center fade-in-up">
+            <h1
+                class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 max-w-4xl mb-6 leading-[1.1]">
+                Honkai: Star Rail highlights<br class="hidden md:block" /> and gameplay.
+            </h1>
+            <p
+                class="text-lg md:text-xl text-gray-500 max-w-2xl mb-10 leading-relaxed font-normal delay-100 fade-in-up">
+                Precision strategies, optimised builds, and endgame showcases.<br class="hidden md:block" /> Curated for
+                the dedicated Trailblazer.
             </p>
-            
-            <div class="glass-card max-w-lg mx-auto p-10 flex flex-col items-center">
-                <i class="far fa-envelope text-4xl text-brand-red mb-6"></i>
-                <a href="mailto:iroponcopin@aespa.me" class="text-xl md:text-2xl font-bold mb-8 hover:text-brand-red transition-colors break-all">
+            <div class="flex flex-col sm:flex-row items-center gap-4 delay-200 fade-in-up">
+                <a href="https://www.youtube.com/watch?v=slLQrdFYjb0" target="_blank"
+                    class="px-8 py-3.5 text-sm font-semibold bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all hover:scale-[1.02] active:scale-[0.98]">
+                    Watch latest video
+                </a>
+                <a href="https://www.youtube.com/@irooo0975" target="_blank"
+                    class="px-8 py-3.5 text-sm font-semibold text-gray-900 hover:text-red-600 transition-colors flex items-center gap-2 group">
+                    Subscribe on YouTube
+                    <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Videos Section -->
+        <section id="videos" class="py-24 px-6 max-w-7xl mx-auto delay-300 fade-in-up">
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-12 border-b border-gray-100 pb-4">Latest
+                Uploads</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                <!-- Video 1 -->
+                <a href="https://www.youtube.com/watch?v=slLQrdFYjb0" target="_blank"
+                    class="group block cursor-pointer">
+                    <div
+                        class="relative aspect-video rounded-xl overflow-hidden bg-gray-100 mb-4 transition-transform duration-300 ease-out group-hover:scale-[1.01]">
+                        <img src="https://img.youtube.com/vi/slLQrdFYjb0/maxresdefault.jpg" alt="Saber E0S1 Gameplay"
+                            class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                    <h3
+                        class="text-base font-semibold text-gray-900 leading-snug mb-1 group-hover:text-red-600 transition-colors">
+                        Saber E0S1 | 1 cycle
+                    </h3>
+                    <p class="text-sm text-gray-500">Honkai: Star Rail</p>
+                </a>
+
+                <!-- Video 2 -->
+                <a href="https://www.youtube.com/watch?v=pbeRzWsSVyY" target="_blank"
+                    class="group block cursor-pointer">
+                    <div
+                        class="relative aspect-video rounded-xl overflow-hidden bg-gray-100 mb-4 transition-transform duration-300 ease-out group-hover:scale-[1.01]">
+                        <img src="https://img.youtube.com/vi/pbeRzWsSVyY/maxresdefault.jpg"
+                            alt="Hysilens x Kafka E0S0 Gameplay" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                    <h3
+                        class="text-base font-semibold text-gray-900 leading-snug mb-1 group-hover:text-red-600 transition-colors">
+                        Hysilens x Kafka E0S0
+                    </h3>
+                    <p class="text-sm text-gray-500">Honkai: Star Rail</p>
+                </a>
+
+                <!-- Video 3 (Placeholder) -->
+                <div class="group block cursor-default opacity-60">
+                    <div
+                        class="relative aspect-video rounded-xl overflow-hidden bg-gray-50 border border-gray-100 mb-4 flex items-center justify-center">
+                        <span class="text-gray-400 text-sm font-medium">Coming Soon</span>
+                    </div>
+                    <h3 class="text-base font-semibold text-gray-400 leading-snug mb-1">
+                        More content on the way
+                    </h3>
+                    <p class="text-sm text-gray-300">Stay tuned</p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="https://www.youtube.com/@irooo0975/videos" target="_blank"
+                    class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
+                    View all videos on YouTube
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-gray-50 border-t border-gray-100">
+            <div class="max-w-2xl mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">Get in Touch</h2>
+                <p class="text-lg text-gray-500 mb-8 font-light">
+                    For business enquiries and collaborations.
+                </p>
+                <a href="mailto:iroponcopin@aespa.me"
+                    class="text-2xl md:text-3xl font-semibold text-gray-900 hover:text-red-600 transition-colors border-b-2 border-gray-200 hover:border-red-600 pb-1 inline-block">
                     iroponcopin@aespa.me
                 </a>
-                <a href="mailto:iroponcopin@aespa.me" class="btn-primary w-full shadow-none hover:shadow-lg">
-                    Email Me
-                </a>
-                <p class="text-xs text-brand-muted mt-6">
-                    We will only use your email to respond to your enquiry.
-                </p>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 bg-brand-dark text-center">
-        <div class="container mx-auto px-6">
-            <div class="flex items-center justify-center gap-6 mb-8">
-                <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"><i class="far fa-envelope"></i></a>
-            </div>
-            <p class="text-brand-muted text-sm">
-                &copy; <script>document.write(new Date().getFullYear())</script> Iroha. All Rights Reserved.
+    <footer class="bg-white py-12 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <p class="text-sm text-gray-400">
+                &copy; 2026 IROHA. All rights reserved.
             </p>
+
+            <div class="flex items-center gap-6">
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@irooo0975" target="_blank"
+                    class="text-gray-400 hover:text-gray-900 transition-colors">
+                    <span class="sr-only">YouTube</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                    </svg>
+                </a>
+
+                <!-- X / Twitter -->
+                <a href="https://x.com/irohamai__ru" target="_blank"
+                    class="text-gray-400 hover:text-gray-900 transition-colors">
+                    <span class="sr-only">X (Twitter)</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/genouiroha/" target="_blank"
+                    class="text-gray-400 hover:text-gray-900 transition-colors">
+                    <span class="sr-only">Instagram</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.41 2.045c.636-.247 1.363-.416 2.427-.465C8.901 1.534 9.256 1.524 12.315 1.524V2zM6.184 6.184c-1.622 1.622-1.622 4.253 0 5.875 1.622 1.622 4.253 1.622 5.875 0 1.622-1.622 1.622-4.253 0-5.875-1.622-1.622-4.253-1.622-5.875 0zm1.333 1.333c.885-.885 2.32-.885 3.205 0 .885.885.885 2.32 0 3.205-.885.885-2.32.885-3.205 0-.885-.885-.885-2.32 0-3.205zm5.333-3.2a1 1 0 110 2 1 1 0 010-2z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
         </div>
     </footer>
-
-    <!-- Scripts -->
-    <script>
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const links = document.querySelectorAll('.mobile-link');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Close menu when clicking a link
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-
-        // Add scrolled state to navbar
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-md');
-                nav.classList.replace('bg-brand-dark/90', 'bg-brand-dark/95');
-            } else {
-                nav.classList.remove('shadow-md');
-                nav.classList.replace('bg-brand-dark/95', 'bg-brand-dark/90');
-            }
-        });
-    </script>
 </body>
+
 </html>
