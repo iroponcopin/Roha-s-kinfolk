@@ -1,154 +1,335 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en-GB" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glimpse Style</title>
-    <meta name="color-scheme" content="light dark">
-    <link rel="stylesheet" href="style.css">
+    <title>Iroha — Official Homepage | YouTube Content & Updates</title>
+    <meta name="description" content="Official homepage of Iroha Mai. Discover latest YouTube videos, follow on X and Instagram, and contact via email.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Iroha Mai — Official Homepage">
+    <meta property="og:description" content="Gaming & Lifestyle from Iroha Mai. Watch latest videos and stay updated.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://irohamai.com"> <!-- Placeholder URL -->
+    <meta property="og:image" content="https://placehold.co/1200x630/1a1a1a/ffffff?text=Iroha+Mai">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            red: '#FF0000',
+                            dark: '#0f0f0f',
+                            gray: '#1E1E1E',
+                            surface: '#272727',
+                            text: '#F5F5F5',
+                            muted: '#A3A3A3'
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .btn-primary {
+                @apply bg-brand-red text-white px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg shadow-red-900/20 flex items-center justify-center gap-2;
+            }
+            .btn-secondary {
+                @apply border border-white/20 text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all hover:border-white/50 flex items-center justify-center gap-2;
+            }
+            .section-title {
+                @apply text-3xl md:text-5xl font-black mb-12 text-center tracking-tight;
+            }
+            .glass-card {
+                @apply bg-brand-gray/50 backdrop-blur-sm border border-white/5 rounded-2xl p-6 hover:border-white/10 transition-all;
+            }
+        }
+    </style>
 </head>
+<body class="bg-brand-dark text-brand-text font-sans antialiased overflow-x-hidden">
 
-<body>
-    <div class="background-mesh"></div>
-
-    <header id="main-header" class="glass-panel">
-        <nav>
-            <a href="#" class="nav-logo" data-key="nav-logo">Glimpse. Genou</a>
-        </nav>
-    </header>
-
-    <main id="main-content">
-        <section class="hero fade-in-target">
-            <div class="hero-content">
-                <h1 data-key="hero-title">Thank you for finding me.</h1>
-                <h2 data-key="hero-subtitle">I wish to build a community with you all.</h2>
-                <div class="cta-links">
-                    <a href="#" id="open-social-modal" class="cta-button glass-button" data-key="hero-button">Learn
-                        More</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="content-section" class="content-grid">
-            <h2 class="section-title fade-in-target" data-key="content-title">Content title to be published</h2>
-            <div class="grid-container">
-                <a href="https://genshin.hoyoverse.com/" target="_blank" rel="noopener noreferrer"
-                    class="content-card-link fade-in-target">
-                    <div class="content-card glass-panel">
-                        <div class="card-image-wrapper">
-                            <!-- Ideally these would be local images, using placeholders for now if files don't exist -->
-                            <img src="image/genshin_image.jpg" alt="Genshin Impact" onerror="this.style.display='none'">
-                        </div>
-                        <h3 data-key="game1-title">Genshin Impact</h3>
-                    </div>
-                </a>
-                <a href="https://hsr.hoyoverse.com/" target="_blank" rel="noopener noreferrer"
-                    class="content-card-link fade-in-target">
-                    <div class="content-card glass-panel">
-                        <div class="card-image-wrapper">
-                            <img src="image/starrail_image.jpg" alt="Honkai: Star Rail"
-                                onerror="this.style.display='none'">
-                        </div>
-                        <h3 data-key="game2-title">Honkai: Star Rail</h3>
-                    </div>
-                </a>
-                <a href="https://zenless.hoyoverse.com/" target="_blank" rel="noopener noreferrer"
-                    class="content-card-link fade-in-target">
-                    <div class="content-card glass-panel">
-                        <div class="card-image-wrapper">
-                            <img src="image/zzz_image.jpg" alt="Zenless Zone Zero" onerror="this.style.display='none'">
-                        </div>
-                        <h3 data-key="game3-title">Zenless Zone Zero</h3>
-                    </div>
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="content-card-link fade-in-target">
-                    <div class="content-card glass-panel">
-                        <div class="card-image-wrapper">
-                            <img src="image/honkai_nexus_anima_icon.jpg" alt="Honkai: Nexus Anima"
-                                onerror="this.style.display='none'">
-                        </div>
-                        <h3 data-key="game7-title">Honkai: Nexus Anima</h3>
-                    </div>
-                </a>
-                <a href="https://www.minecraft.net/" target="_blank" rel="noopener noreferrer"
-                    class="content-card-link fade-in-target">
-                    <div class="content-card glass-panel">
-                        <div class="card-image-wrapper">
-                            <img src="image/minecraft_image.jpg" alt="Minecraft" onerror="this.style.display='none'">
-                        </div>
-                        <h3 data-key="game4-title">Minecraft</h3>
-                    </div>
-                </a>
-                <a href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer"
-                    class="content-card-link fade-in-target">
-                    <div class="content-card glass-panel">
-                        <div class="card-image-wrapper">
-                            <img src="image/wuthering_waves_image.jpg" alt="Wuthering Waves"
-                                onerror="this.style.display='none'">
-                        </div>
-                        <h3 data-key="game5-title">Wuthering Waves</h3>
-                    </div>
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="content-card-link fade-in-target">
-                    <div class="content-card glass-panel">
-                        <div class="card-image-wrapper">
-                            <img src="image/nte_image.jpg" alt="Neverness To Everness"
-                                onerror="this.style.display='none'">
-                        </div>
-                        <h3 data-key="game6-title">Neverness To Everness</h3>
-                    </div>
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="content-card-link fade-in-target">
-                    <div class="content-card glass-panel">
-                        <div class="card-image-wrapper">
-                            <img src="image/yt_music_icon.png" alt="Music" onerror="this.style.display='none'">
-                        </div>
-                        <h3 data-key="music-card-title">Music</h3>
-                    </div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/5">
+        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-black tracking-tighter hover:text-brand-red transition-colors">
+                IROHA MAI<span class="text-brand-red">.</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide">
+                <a href="#about" class="hover:text-brand-red transition-colors">ABOUT</a>
+                <a href="#videos" class="hover:text-brand-red transition-colors">VIDEOS</a>
+                <a href="#social" class="hover:text-brand-red transition-colors">SOCIAL</a>
+                <a href="#contact" class="hover:text-brand-red transition-colors">CONTACT</a>
+                <a href="https://youtube.com" target="_blank" class="bg-white text-brand-dark px-5 py-2 rounded-full hover:bg-brand-red hover:text-white transition-all">
+                    Subscribe
                 </a>
             </div>
-        </section>
-    </main>
 
-    <div id="social-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-id">
-        <div class="modal-content glass-panel">
-            <button id="close-social-modal" class="modal-close-button glass-button" aria-label="Close">&times;</button>
-            <h2 id="modal-title-id" class="modal-title" data-key="modal-title">Social Media</h2>
-            <div class="modal-social-links">
-                <div class="modal-social-card glass-panel-light">
-                    <div>
-                        <h3>X (Twitter)</h3>
-                        <p>@macaronwinter_</p>
-                    </div>
-                    <a href="https://x.com/macaronwinter_" target="_blank" rel="noopener noreferrer"
-                        class="visit-button glass-button" data-key="modal-visit">Visit</a>
-                </div>
-                <div class="modal-social-card glass-panel-light">
-                    <div>
-                        <h3>Instagram</h3>
-                        <p>@aruiroha0718</p>
-                    </div>
-                    <a href="https://www.instagram.com/aruiroha0718" target="_blank" rel="noopener noreferrer"
-                        class="visit-button glass-button" data-key="modal-visit">Visit</a>
-                </div>
-                <div class="modal-social-card glass-panel-light">
-                    <div>
-                        <h3>YouTube</h3>
-                        <p data-key="modal-youtube-id">幻櫻いろは</p>
-                    </div>
-                    <a href="https://www.youtube.com/@aruiroha0718" target="_blank" rel="noopener noreferrer"
-                        class="visit-button glass-button" data-key="modal-visit">Visit</a>
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-brand-surface border-b border-white/10 shadow-2xl">
+            <div class="flex flex-col p-6 gap-4 font-semibold text-center">
+                <a href="#about" class="py-3 hover:text-brand-red transition-colors mobile-link">About</a>
+                <a href="#videos" class="py-3 hover:text-brand-red transition-colors mobile-link">Videos</a>
+                <a href="#social" class="py-3 hover:text-brand-red transition-colors mobile-link">Social</a>
+                <a href="#contact" class="py-3 hover:text-brand-red transition-colors mobile-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-red/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 text-center z-10 animate-slide-up">
+            <div class="inline-block mb-4 px-4 py-1 rounded-full border border-white/10 bg-white/5 text-sm font-medium text-brand-muted">
+                Official Portfolio
+            </div>
+            <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter leading-tight">
+                IROHA MAI
+            </h1>
+            <p class="text-xl md:text-2xl text-brand-muted max-w-2xl mx-auto mb-10 font-light">
+                Gaming & Lifestyle content that brings joy to your screen.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                <a href="https://youtube.com" target="_blank" class="btn-primary w-full md:w-auto">
+                    <i class="fab fa-youtube"></i> Watch on YouTube
+                </a>
+                <div class="flex gap-4 w-full md:w-auto">
+                    <a href="https://x.com" target="_blank" class="btn-secondary flex-1 md:flex-none justify-center">
+                        <i class="fab fa-x-twitter"></i> <span class="md:hidden">X</span>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="btn-secondary flex-1 md:flex-none justify-center">
+                        <i class="fab fa-instagram"></i> <span class="md:hidden">IG</span>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
+    </header>
 
-    <footer role="contentinfo" class="glass-panel-footer">
-        <p>&copy; 2025 Glimpse Style Inc. All rights reserved.</p>
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-brand-dark relative">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="section-title">About Me</h2>
+                <div class="prose prose-invert prose-lg mx-auto text-brand-muted leading-relaxed">
+                    <p class="mb-6">
+                        Hi, I’m Iroha — I create gaming and lifestyle videos that bring joy to your screen. Join me on my creative journey as we explore new worlds, try new things, and build an amazing community together.
+                    </p>
+                    <p>
+                        Whether I'm attempting a speed-run or sharing my daily life, my goal is always to put a smile on your face. Thanks for stopping by!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube Section -->
+    <section id="videos" class="py-24 bg-brand-gray/30 border-y border-white/5">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Latest on YouTube</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Video Item 1 -->
+                <a href="https://youtube.com" target="_blank" class="group block">
+                    <div class="relative overflow-hidden rounded-xl aspect-video mb-4 border border-white/10 group-hover:border-brand-red/50 transition-all">
+                        <img src="https://placehold.co/600x400/222/FFF?text=Video+Thumbnail" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fas fa-play-circle text-5xl text-red-600 drop-shadow-lg"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg group-hover:text-brand-red transition-colors truncate">Epic Gaming Moments #42</h3>
+                    <p class="text-sm text-brand-muted mt-1">2 days ago • 145K views</p>
+                </a>
+                
+                <!-- Video Item 2 -->
+                <a href="https://youtube.com" target="_blank" class="group block">
+                    <div class="relative overflow-hidden rounded-xl aspect-video mb-4 border border-white/10 group-hover:border-brand-red/50 transition-all">
+                        <img src="https://placehold.co/600x400/222/FFF?text=Vlog+Setup" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fas fa-play-circle text-5xl text-red-600 drop-shadow-lg"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg group-hover:text-brand-red transition-colors truncate">My New Studio Setup Tour</h3>
+                    <p class="text-sm text-brand-muted mt-1">1 week ago • 210K views</p>
+                </a>
+
+                <!-- Video Item 3 -->
+                <a href="https://youtube.com" target="_blank" class="group block">
+                    <div class="relative overflow-hidden rounded-xl aspect-video mb-4 border border-white/10 group-hover:border-brand-red/50 transition-all">
+                        <img src="https://placehold.co/600x400/222/FFF?text=Live+Stream" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fas fa-play-circle text-5xl text-red-600 drop-shadow-lg"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg group-hover:text-brand-red transition-colors truncate">Sunday Chill Stream Highlights</h3>
+                    <p class="text-sm text-brand-muted mt-1">2 weeks ago • 89K views</p>
+                </a>
+            </div>
+            <div class="text-center mt-12">
+                <a href="https://www.youtube.com/@irooo0975" target="_blank" class="inline-flex items-center gap-2 text-brand-muted hover:text-white transition-colors border-b border-transparent hover:border-white pb-0.5">
+                    View Channel <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section id="social" class="py-24 bg-brand-dark">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Social Updates</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <!-- X Card -->
+                <div class="glass-card flex flex-col items-start bg-gradient-to-br from-[#1E1E1E] to-[#121212]">
+                    <div class="flex items-center gap-3 mb-6 w-full border-b border-white/5 pb-4">
+                        <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+                            <i class="fab fa-x-twitter text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Twitter / X</h3>
+                            <p class="text-xs text-brand-muted">@irohamai__ru</p>
+                        </div>
+                    </div>
+                    <p class="text-brand-muted mb-8 italic flex-grow">"Just finished editing the new video! It's going to be a fun one. Stay tuned for the premiere tomorrow at 6PM! 🎮✨"</p>
+                    <a href="https://x.com/irohamai__ru" target="_blank" class="w-full btn-secondary py-2 text-sm">
+                        Follow on X
+                    </a>
+                </div>
+
+                <!-- Instagram Card -->
+                <div class="glass-card flex flex-col items-start bg-gradient-to-br from-[#1E1E1E] to-[#121212]">
+                    <div class="flex items-center gap-3 mb-6 w-full border-b border-white/5 pb-4">
+                        <div class="w-10 h-10 bg-gradient-to-tr from-yellow-500 via-red-500 to-purple-600 rounded-full flex items-center justify-center">
+                            <i class="fab fa-instagram text-xl text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Instagram</h3>
+                            <p class="text-xs text-brand-muted">@genouiroha
+                            
+                            </p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 w-full mb-8">
+                        <div class="aspect-square bg-white/5 rounded-md overflow-hidden"><img src="https://placehold.co/150" alt="Insta" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-white/5 rounded-md overflow-hidden"><img src="https://placehold.co/150" alt="Insta" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-white/5 rounded-md overflow-hidden"><img src="https://placehold.co/150" alt="Insta" class="w-full h-full object-cover"></div>
+                    </div>
+                    <a href="https://instagram.com/genouiroha" target="_blank" class="w-full btn-secondary py-2 text-sm">
+                        Follow on Instagram
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-brand-surface relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="text-brand-muted max-w-xl mx-auto mb-10">
+                For business enquiries, collaborations, or just to say hello.
+            </p>
+            
+            <div class="glass-card max-w-lg mx-auto p-10 flex flex-col items-center">
+                <i class="far fa-envelope text-4xl text-brand-red mb-6"></i>
+                <a href="mailto:iroponcopin@aespa.me" class="text-xl md:text-2xl font-bold mb-8 hover:text-brand-red transition-colors break-all">
+                    iroponcopin@aespa.me
+                </a>
+                <a href="mailto:iroponcopin@aespa.me" class="btn-primary w-full shadow-none hover:shadow-lg">
+                    Email Me
+                </a>
+                <p class="text-xs text-brand-muted mt-6">
+                    We will only use your email to respond to your enquiry.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 bg-brand-dark text-center">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-center gap-6 mb-8">
+                <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"><i class="far fa-envelope"></i></a>
+            </div>
+            <p class="text-brand-muted text-sm">
+                &copy; <script>document.write(new Date().getFullYear())</script> Iroha Mai. All Rights Reserved.
+            </p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
-</body>
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
 
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close menu when clicking a link
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Add scrolled state to navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+                nav.classList.replace('bg-brand-dark/90', 'bg-brand-dark/95');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.replace('bg-brand-dark/95', 'bg-brand-dark/90');
+            }
+        });
+    </script>
+</body>
 </html>
