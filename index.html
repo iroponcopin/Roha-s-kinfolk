@@ -6,21 +6,21 @@
   <meta name="theme-color" content="#0a0a0c" />
   <meta name="color-scheme" content="dark" />
 
-  <title>IROHA — 幻櫻いろは · Gaming Shorts, Edits &amp; Moments</title>
-  <meta name="description" content="Official landing page for IROHA (幻櫻いろは). Gacha edits, lyric shorts, and stylish gaming moments from Honkai: Star Rail, Wuthering Waves, Genshin Impact, and Neverness to Everness." />
+  <title>IROHA — 幻櫻いろは · Gaming, Cosmic Archive &amp; Edits</title>
+  <meta name="description" content="Official landing page for IROHA (幻櫻いろは). Gacha edits, lyric shorts, stylish gaming moments from Honkai: Star Rail, Wuthering Waves, Genshin Impact, Neverness to Everness — and The Cosmic Archive." />
   <link rel="canonical" href="https://example.com/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="IROHA — 幻櫻いろは" />
-  <meta property="og:description" content="Gacha edits, lyric shorts, and stylish gaming moments. Shorts-led creator channel." />
+  <meta property="og:description" content="Gacha edits, lyric shorts, stylish gaming moments — and The Cosmic Archive 🪐. Shorts-led creator channel." />
   <meta property="og:image" content="https://example.com/og.jpg" />
   <meta property="og:url" content="https://example.com/" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="IROHA — 幻櫻いろは" />
-  <meta name="twitter:description" content="Gacha edits, lyric shorts, and stylish gaming moments." />
+  <meta name="twitter:description" content="Gacha edits, lyric shorts, stylish gaming moments — and The Cosmic Archive 🪐." />
   <meta name="twitter:image" content="https://example.com/og.jpg" />
 
   <!-- Favicon (inline SVG, no external request) -->
@@ -47,6 +47,7 @@
       --genshin: #a78bfa;
       --nte:     #ff7a6b;
       --shorts:  #ff4d6d;
+      --cosmic:  #6c7cff;   /* deep indigo for The Cosmic Archive */
 
       --radius-sm: 10px;
       --radius:    16px;
@@ -536,6 +537,60 @@
     .card-tag.upcoming { color: var(--nte); border-color: rgba(255,122,107,0.4); background: rgba(255,122,107,0.1); }
     .card-tag.live     { color: var(--wuwa); border-color: rgba(95,208,200,0.35); background: rgba(95,208,200,0.1); }
     .card-tag.featured { color: var(--hsr); border-color: rgba(232,192,106,0.35); background: rgba(232,192,106,0.1); }
+    .card-tag.beta     { color: var(--cosmic); border-color: rgba(108,124,255,0.4); background: rgba(108,124,255,0.1); }
+
+    /* ---------- Beta slot tooltip (Cosmic Archive) ---------- */
+    .beta-slot {
+      position: relative;
+      z-index: 3;
+      margin-top: 4px;
+      font-size: 12.5px;
+      color: var(--text-dim);
+    }
+    .beta-slot summary {
+      cursor: pointer;
+      list-style: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      user-select: none;
+      padding: 4px 0;
+    }
+    .beta-slot summary::-webkit-details-marker { display: none; }
+    .beta-slot-chev {
+      width: 12px; height: 12px;
+      transition: transform 0.25s var(--ease);
+      color: var(--cosmic);
+    }
+    .beta-slot[open] .beta-slot-chev { transform: rotate(90deg); }
+    .beta-slot-list {
+      margin: 10px 0 4px;
+      padding: 12px 14px;
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+      font-variant-numeric: tabular-nums;
+      background: rgba(108,124,255,0.07);
+      border: 1px solid rgba(108,124,255,0.18);
+      border-radius: 12px;
+      color: var(--text-dim);
+      max-width: 540px;
+    }
+    .beta-slot-list li {
+      display: flex; justify-content: space-between; gap: 8px;
+      font-size: 12.5px;
+    }
+    .beta-slot-list em {
+      color: var(--text-mute);
+      font-style: normal;
+      margin-left: 6px;
+      font-size: 10.5px;
+      letter-spacing: 0.04em;
+    }
+    @media (max-width: 720px) {
+      .beta-slot-list { grid-template-columns: 1fr; }
+    }
 
     .card-title {
       font-size: clamp(20px, 2vw, 26px);
@@ -578,14 +633,16 @@
     .card.genshin { grid-column: span 2; --card-accent-a: rgba(167,139,250,0.2);  --card-accent-b: rgba(167,139,250,0.06); --card-glyph: rgba(167,139,250,0.14); }
     .card.nte     { grid-column: span 2; --card-accent-a: rgba(255,122,107,0.22); --card-accent-b: rgba(255,122,107,0.06); --card-glyph: rgba(255,122,107,0.14); min-height: 260px; }
     .card.shorts  { grid-column: span 2; --card-accent-a: rgba(255,77,109,0.22);  --card-accent-b: rgba(255,77,109,0.06); --card-glyph: rgba(255,77,109,0.14); }
+    .card.cosmic  { grid-column: span 6; --card-accent-a: rgba(108,124,255,0.32); --card-accent-b: rgba(124,92,255,0.10); --card-glyph: rgba(108,124,255,0.14); min-height: 280px; scroll-margin-top: 100px; }
 
     @media (max-width: 1024px) {
       .card.hsr, .card.wuwa { grid-column: span 2; }
       .card.genshin, .card.nte, .card.shorts { grid-column: span 2; }
       .card.shorts { grid-column: 1 / -1; }
+      .card.cosmic { grid-column: 1 / -1; }
     }
     @media (max-width: 640px) {
-      .card, .card.hsr, .card.wuwa, .card.genshin, .card.nte, .card.shorts { grid-column: 1 / -1; min-height: 200px; }
+      .card, .card.hsr, .card.wuwa, .card.genshin, .card.nte, .card.shorts, .card.cosmic { grid-column: 1 / -1; min-height: 200px; }
       .card-glyph { font-size: 88px; }
     }
 
@@ -919,6 +976,7 @@
       <nav class="nav" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#series">Series</a>
+        <a href="#cosmic-archive">Cosmic Archive</a>
         <a href="#featured">Featured</a>
         <a href="#links">Links</a>
         <a href="#contact">Contact</a>
@@ -975,7 +1033,7 @@
       <div class="series-head reveal">
         <div>
           <p class="eyebrow">Content Series</p>
-          <h2 class="section-title">Five lanes, one sensibility.</h2>
+          <h2 class="section-title">Six lanes, one sensibility.</h2>
         </div>
         <p class="section-lede">Games, edits, and shorts that share a consistent visual vocabulary — dark, warm, and unhurried.</p>
       </div>
@@ -1046,6 +1104,35 @@
             <h3 class="card-title">Lyric &amp; Edit Shorts</h3>
             <p class="card-desc">Short-form lyric videos and character edits — the channel's most active lane.</p>
             <span class="card-cta">Open shorts
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </article>
+
+        <!-- Cosmic Archive -->
+        <article class="card cosmic reveal" id="cosmic-archive" data-card="cosmic">
+          <span class="card-glyph" aria-hidden="true">COSMIC</span>
+          <a class="card-link" href="#" data-series-link="cosmic" aria-label="The Cosmic Archive playlist" target="_blank" rel="noopener"></a>
+          <div class="card-body">
+            <span class="card-tag beta">Beta · 20:30 London</span>
+            <h3 class="card-title">The Cosmic Archive 🪐</h3>
+            <p class="card-desc">Voyage through the infinite — cosmic edits, ambient lyric pieces, and quiet space-themed cuts. New drops debut in the 20:30 London beta slot.</p>
+            <details class="beta-slot">
+              <summary>
+                <svg class="beta-slot-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Time-zone conversions
+              </summary>
+              <ul class="beta-slot-list">
+                <li><span>London</span><span>20:30 <em>BST</em></span></li>
+                <li><span>Berlin · Paris</span><span>21:30 <em>CEST</em></span></li>
+                <li><span>Tokyo</span><span>04:30 <em>JST · +1d</em></span></li>
+                <li><span>Delhi · Mumbai</span><span>01:00 <em>IST · +1d</em></span></li>
+                <li><span>Singapore</span><span>03:30 <em>SGT · +1d</em></span></li>
+                <li><span>New York</span><span>15:30 <em>EDT</em></span></li>
+                <li><span>Los Angeles</span><span>12:30 <em>PDT</em></span></li>
+              </ul>
+            </details>
+            <span class="card-cta">Open playlist
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
           </div>
@@ -1206,7 +1293,8 @@
         wuwa:    "https://www.youtube.com/@1roha_o7",
         genshin: "https://www.youtube.com/@1roha_o7",
         nte:     "https://www.youtube.com/@1roha_o7",
-        edits:   "https://www.youtube.com/@1roha_o7/shorts"
+        edits:   "https://www.youtube.com/@1roha_o7/shorts",
+        cosmic:  "https://www.youtube.com/@1roha_o7"   // The Cosmic Archive — replace with playlist URL when live
       },
 
       // NTE launch badge. Clear these strings to hide the badge after launch.
